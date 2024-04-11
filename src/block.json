@@ -1,0 +1,38 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "aa-expo-plan/expo-plan",
+	"version": "0.1.0",
+	"title": "Expo Plan",
+	"category": "widgets",
+	"icon": "location-alt",
+	"description": "Create a interactive expo map/plan",
+	"example": {},
+	"supports": {
+		"html": false
+	},
+	"textdomain": "expo-plan",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js",
+	"attributes": {
+		"mapSVGId": {
+			"type": "number",
+			"default": 0
+		},
+		"mapSVGUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"mapZoom": {
+			"type": "number",
+			"default": 1
+		},
+		"boothes": {
+			"type": "array",
+			"default": []
+		}
+	}
+}
