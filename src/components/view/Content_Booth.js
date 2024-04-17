@@ -41,24 +41,32 @@ export default function BoothContent({ contentData }) {
                 <>
                     {imageURL && <img src={imageURL} alt="Exhibitor Logo" />}
                     <h4>{contentData.title.rendered}</h4>
-                    <p>{contentData.acf.exhibitor.beschreibungstext}</p>
+                    <div className="exomap-content-description" dangerouslySetInnerHTML={{ __html: contentData.acf.exhibitor.beschreibungstext }} />
 
-                    <div className='exomap-content-trenner'>
-                        <p>Contact Person</p>
-                    </div>
-                    <div className='expomap-content-contact'>
-                        <a href={contentData.acf.exhibitor.kontaktperson_verlinkung} target="_blank">
-                            <IoPersonCircle color="#1582BE" size="35px" />
-                            <h6>{contentData.acf.exhibitor.kontaktperson}</h6>
-                        </a>
-                    </div>
+                    { contentData.acf.exhibitor.kontaktperson_verlinkung &&
+                        <>
+                            <div className='exomap-content-trenner'>
+                                <p>Contact Person</p>
+                            </div>
+                            <div className='expomap-content-contact'>
+                                <a href={contentData.acf.exhibitor.kontaktperson_verlinkung} target="_blank">
+                                    <IoPersonCircle color="#1582BE" size="35px" />
+                                    <h6>{contentData.acf.exhibitor.kontaktperson}</h6>
+                                </a>
+                            </div>
+                        </>
+                    }
 
-                    <div className='exomap-content-trenner'>
-                        <p>Webseite</p>
-                    </div>
-                    <a href={contentData.acf.exhibitor.kontaktperson_verlinkung} target="_blank">
-                        <button>Website</button>
-                    </a>
+                    { contentData.acf.exhibitor.webseite &&
+                        <>
+                            <div className='exomap-content-trenner'>
+                                <p>Webseite</p>
+                            </div>
+                            <a href={contentData.acf.exhibitor.webseite} target="_blank">
+                                <button>Website</button>
+                            </a>
+                        </>
+                    }
                 </>
             )}
         </div>
