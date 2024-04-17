@@ -4,10 +4,9 @@ import { IoPersonCircle } from "react-icons/io5";
 export default function BoothContent({ contentData }) {
      const [imageURL, setImageURL] = useState(null);
      const [loading, setLoading] = useState(true);
-
+    
      useEffect(() => {
         setLoading(true);
-
         async function fetchImage() {
             if (contentData.acf && contentData.acf.exhibitor && contentData.acf.exhibitor.logo) {
                 try {

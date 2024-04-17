@@ -198,7 +198,7 @@ export default function Edit( {attributes, setAttributes } ) {
 												{ mapSVGId == 0 && __('Choose your svg map', 'Expo Plan')}
 												{ attributes != undefined && 
 													<ResponsiveWrapper>
-														<img src={ mapSVGUrl } />
+														<img src={ mapSVGUrl } height="300px" width="300px" style={{height:"300px"}}/>
 													</ResponsiveWrapper>
 												}
 											</Button>
