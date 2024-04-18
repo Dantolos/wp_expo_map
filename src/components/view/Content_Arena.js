@@ -41,7 +41,7 @@ export default function ArenaContent({ contentData }) {
                 // Actual content
                 <>
                     {imageURL && <img src={imageURL} alt="Exhibitor Logo" />}
-                    <h4>{contentData.title.rendered}</h4>
+                    <h4 dangerouslySetInnerHTML={{ __html: contentData.title.rendered }}></h4>
                     <div className="exomap-content-description" dangerouslySetInnerHTML={{ __html: contentData.acf.arena.description }} />
 
                     { contentData.acf.arena.kontaktperson_verlinkung &&

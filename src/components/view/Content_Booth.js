@@ -40,7 +40,7 @@ export default function BoothContent({ contentData }) {
                 // Actual content
                 <>
                     {imageURL && <img src={imageURL} alt="Exhibitor Logo" />}
-                    <h4>{contentData.title.rendered}</h4>
+                    <h4 dangerouslySetInnerHTML={{ __html: contentData.title.rendered }}></h4>
                     <div className="exomap-content-description" dangerouslySetInnerHTML={{ __html: contentData.acf.exhibitor.beschreibungstext }} />
 
                     { contentData.acf.exhibitor.kontaktperson_verlinkung &&
