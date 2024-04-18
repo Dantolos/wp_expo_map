@@ -12,7 +12,7 @@ export default function ExpoMapListItem( props ) {
 
      useEffect( () => {
           var postArray = [];
-          fetch( '/wp-json/wp/v2/booth' )
+          fetch( '/wp-json/wp/v2/booth?per_page=100' )
                .then( response => response.json() )
                .then( data => { 
                          data.map( post => {
