@@ -66,9 +66,9 @@ export default function MapMenu() {
                <div className="expomap-menu-item" data-label="zoom-in" onClick={handleZoomIn}> 
                     <IoAddCircle size="100%" color="white"/> 
                </div>
-               <div className="expomap-menu-item" id="map-reset" data-label="zoom-reset" onClick={handleZoomReset}> 
+               {/* <div className="expomap-menu-item" id="map-reset" data-label="zoom-reset" onClick={handleZoomReset}> 
                     <IoScanCircle size="100%" color="white"/> 
-               </div>
+               </div> */}
           </div>
      )
 }

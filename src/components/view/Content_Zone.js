@@ -9,9 +9,9 @@ export default function ZoneContent({ contentData }) {
 
         console.log(contentData)
         async function fetchImage() {
-            if (contentData.acf && contentData.acf.exhibitor && contentData.acf.zone.logo) {
+            if (contentData.acf && contentData.acf.zone && contentData.acf.zone.logo) {
                 try {
-                        const imageID = contentData.acf.exhibitor.logo;
+                        const imageID = contentData.acf.zone.logo;
                         const REST_URL = `${window.location.origin}/wp-json/wp/v2/`;
                         const response = await fetch(`${REST_URL}media/${imageID}`);
                         const data = await response.json();
@@ -42,7 +42,7 @@ export default function ZoneContent({ contentData }) {
                 <>
                     {imageURL && <img src={imageURL} alt="Exhibitor Logo" />}
                     <h4 dangerouslySetInnerHTML={{ __html: contentData.title.rendered }}></h4>
-                    <div className="exomap-content-description" dangerouslySetInnerHTML={{ __html: contentData.acf.zone.beschreibungstext }} />
+                    <div className="exomap-content-description" dangerouslySetInnerHTML={{ __html: contentData.acf.zone.description }} />
 
                  
                 </>

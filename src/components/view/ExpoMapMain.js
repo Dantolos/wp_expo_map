@@ -54,6 +54,21 @@ export default function ExpoMapMain() {
      //           } )
      //      }
      // }, [])
+     useEffect( ()=> {
+
+          const MAP_ELEMENT = document.querySelector('.expo-plan-image-container>svg');
+          // MAP_ELEMENT.addEventListener('mousemove', e => {
+          //      setTooltippPosition({x: e.clientX, y: e.clientY})
+          //      console.log('moouse')
+          // });
+          // MAP_ELEMENT.addEventListener('mouseout', e => {   
+          //      document.querySelector('.tooltip-container').classList.add('hidden-toolbar');
+               
+          //      //hover response list item 
+          //      let responseListItem = document.querySelector('.expomap-list-item[data-boothid="'+MAP_ELEMENT.id+'"]')
+          //      responseListItem.classList.toggle('expomap-list-item-hover');
+          // });
+     }, [])
 
      useEffect(() => {
           if(!currentHover){ return } 
