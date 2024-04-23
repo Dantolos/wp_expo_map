@@ -33,6 +33,7 @@ export default function ZoneContent({ contentData }) {
             {loading ? (
                 // Skeleton content while loading
                 <> 
+                    <div className="skeleton skeleton-image"></div>
                     <div className="skeleton skeleton-title"></div>
                     <div className="skeleton skeleton-description"></div>
                 </>
@@ -41,7 +42,9 @@ export default function ZoneContent({ contentData }) {
                 <>
                     {imageURL && <img src={imageURL} alt="Exhibitor Logo" />}
                     <h4 dangerouslySetInnerHTML={{ __html: contentData.title.rendered }}></h4>
-                    <div className="exomap-content-description" dangerouslySetInnerHTML={{ __html: contentData.acf.zone.description }} />
+                    <div className="exomap-content-description" dangerouslySetInnerHTML={{ __html: contentData.acf.zone.beschreibungstext }} />
+
+                 
                 </>
             )}
         </div>
