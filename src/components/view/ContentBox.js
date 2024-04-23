@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import  { MAP_SVG } from "../../helper/svg-preparing";
 import BoothContent from './Content_Booth';
 import ArenaContent from './Content_Arena';
+import InfoContent from './Content_Info';
+import ZoneContent from './Content_Zone';
 
 export default function ContentBox() {
      const [content, setContent] = useState(false);
@@ -66,6 +68,12 @@ export default function ContentBox() {
                          } 
                          {  content.acf.booth_type === 'a' &&
                               <ArenaContent contentData={content} /> 
+                         } 
+                         {  content.acf.booth_type === 'i' &&
+                              <InfoContent contentData={content} /> 
+                         } 
+                         {  content.acf.booth_type === 'z' &&
+                              <ZoneContent contentData={content} /> 
                          } 
                     </>
                }

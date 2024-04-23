@@ -31,7 +31,7 @@ export default function Edit( {attributes, setAttributes } ) {
 
 	const { mapSVGId, mapSVGUrl, mapZoom, boothes } = attributes;
 	const [fetchedSVG, setFetchedSVG] = useState(null);
-	const [expoMap, setExpoMap] = useState(false);
+	const [ expoMap, setExpoMap ] = useState(false);
 	const [expoList, setExpoList] = useState(false);
 	
 	//const EXPO_MAP = new MAP_SVG()
@@ -108,7 +108,7 @@ export default function Edit( {attributes, setAttributes } ) {
 									.replace('b', 'Booth')
 									.replace('z', 'Zone')
 									.replace('i', 'Info') 
-									.replace('a', 'Active') 
+									.replace('a', 'Arena') 
 									.replace('-', ' ').replace('-', ' ') 
 									.replace(/\d+/g, "")
 									.trim();

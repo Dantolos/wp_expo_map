@@ -4,10 +4,21 @@
 function ItemList($items) {
      $itemList = ''; 
      $itemList .= '<div class="expomap-itemlist hidden-itemlist">';
+
+     $lastItem = '';
      foreach($items as $item ) {  
           $itemID = $item['id'];
+          //var_dump($item);
 		$selectedContentID = isset( $item['selectedContent'] ) ? $item['selectedContent'] : null;
           $itemTitle = 'Titel Platzhalter';
+
+          if($lastItem != $item["type"] ){
+               $lastItem = $item["type"];
+
+               $typetitle = ($item["type"] == 'Active') ? 'Arena' : $item["type"];
+               $itemList .= '<div class="expomap-list-type-separator"><span>'.$typetitle.'</span></div>';
+          }
+
           if( $selectedContentID ){ 
                //var_dump( get_field( 'exhibitor', $selectedContentID  ) );
                $itemTitle = get_the_title( $selectedContentID ) ?: 'Titel Platzhalter';

@@ -3,7 +3,7 @@ import { IoPersonCircle } from "react-icons/io5";
 
 export default function BoothContent({ contentData }) {
      const [imageURL, setImageURL] = useState(null);
-     const [loading, setLoading] = useState(true);
+     const [loading, setLoading] = useState(false);
     
      useEffect(() => {
         setLoading(true);
@@ -21,8 +21,8 @@ export default function BoothContent({ contentData }) {
                         setLoading(false); // Set loading to false regardless of success or failure
                 }
             }
+            setLoading(false);
         }
-
         fetchImage();
     }, [contentData]);
 

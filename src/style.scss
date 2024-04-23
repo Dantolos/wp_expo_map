@@ -81,13 +81,23 @@
 		left: -20vw;
 	}
 
+	.expomap-list-type-separator {
+		border-bottom: 1px solid #1582BE;
+		margin-top:10px;
+		span {
+			font-size: 14px;
+			color:#1582BE;
+		}
+	}
+
 	.expomap-list-item {
-		padding: 5px 10px;
+		padding: 10px 5px 10px 5px;
 		p {
-			font-size: 20px;   
+			font-size: 16px;   
 			font-family: Media Sans;
 			display: flex;
    			align-items: center;
+			margin: 0;
 		}
 		.expomap-item-nr {
 			background-color: #1582BE;
@@ -95,7 +105,7 @@
 			padding: 10px;
 			border-radius: 50%;
 			margin-right:10px;
-			font-size: 14px;
+			font-size: 12px;
     			letter-spacing: 1px;
 
 		}
