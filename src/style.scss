@@ -297,7 +297,10 @@
 
 
 @media (max-width: 680px), screen and (orientation: portrait) {
-	
+	#expo-plan-wrapper {
+		max-height: calc( 100vh - 100px );
+		height: calc( 100vh - 100px );
+	}
 	.expomap-itemlist {
 		width: 60vw;
 	}
@@ -307,6 +310,14 @@
 
 	#expomap-content-container {
 		width: 100vw;
+	}
+
+	.expomap-mapmenu-container{
+		bottom: 50px;
+		 .expomap-menu-item {
+			height: 50px;
+			width: 50px;
+		 }
 	}
 }
    

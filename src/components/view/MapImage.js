@@ -10,12 +10,12 @@ export default function MapImage( { loadHandler } ) {
     const [width, setWidth]   = useState(window.innerWidth);
     const [height, setHeight] = useState(window.innerHeight);
     const [initialScale, setInitialScale] = useState(1);
-    
+
     const updateDimensions = () => {
         setWidth(window.innerWidth);
         setHeight(window.innerHeight);
         if( width < 1000 ) {
-          setInitialScale(5)
+          setInitialScale(2)
         }
     }
     useEffect(() => {
@@ -51,6 +51,7 @@ export default function MapImage( { loadHandler } ) {
         initialScale={initialScale}
         initialPositionX={0}
         initialPositionY={0} 
+        limitToBounds={false}
         >
         <TransformComponent> 
           <div 
