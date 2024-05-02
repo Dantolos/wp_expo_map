@@ -33,6 +33,8 @@
 	svg {	
 		transform: scale(2);
 		pointer-events: auto;
+		width: 100%;
+		height: 100%;
 	}
 }
 
@@ -194,6 +196,7 @@
 		transform:translate(150%,0%);
 	}
 	>svg { transition: inherit;}
+	
 	>svg:hover {
 		transform: scale(1.3);
 		cursor: pointer;

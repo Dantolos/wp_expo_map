@@ -1,7 +1,4 @@
 <?php
-/**
- * @see https://github.com/WordPress/gutenberg/blob/trunk/docs/reference-guides/block-api/block-metadata.md#render
- */
 
 require_once( __DIR__ . '/components/view/item-list.php' );
 require_once( __DIR__ . '/components/view/map-menu.php' );
