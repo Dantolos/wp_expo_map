@@ -425,9 +425,19 @@ class MAP_SVG {
       // Element hover effect
       element.addEventListener('mouseenter', () => {
         element.classList.add('hover-element');
+        if (element.children) {
+          for (const childElement of element.children) {
+            childElement.classList.add('hover-element');
+          }
+        }
       });
       element.addEventListener('mouseleave', () => {
         element.classList.remove('hover-element');
+        if (element.children) {
+          for (const childElement of element.children) {
+            childElement.classList.remove('hover-element');
+          }
+        }
       });
     });
   }

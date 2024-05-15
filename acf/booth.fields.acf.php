@@ -184,7 +184,31 @@ add_action( 'acf/include_fields', function() {
 			),
 			'layout' => 'block',
 			'sub_fields' => array(
-				
+				array(
+					'key' => 'field_6644b6e861162',
+					'label' => 'Image',
+					'name' => 'image',
+					'aria-label' => '',
+					'type' => 'image',
+					'instructions' => '800 x 400 Pixel',
+					'required' => 0,
+					'conditional_logic' => 0,
+					'wrapper' => array(
+						'width' => '',
+						'class' => '',
+						'id' => '',
+					),
+					'return_format' => 'url',
+					'library' => 'all',
+					'min_width' => '',
+					'min_height' => '',
+					'min_size' => '',
+					'max_width' => '',
+					'max_height' => '',
+					'max_size' => '',
+					'mime_types' => '',
+					'preview_size' => 'medium',
+				),
 				array(
 					'key' => 'field_65f9a39f670a7',
 					'label' => 'Description',

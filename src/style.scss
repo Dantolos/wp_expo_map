@@ -39,8 +39,10 @@
 }
 
 .hover-element {
-	stroke: #fff;
-	stroke-width: 5;
+	stroke: #FFF !important;
+	stroke-width: 5 !important;
+	fill: #ffec00 !important; 
+	fill-opacity: 1;
 }
 
 .hover-element:hover {
@@ -233,12 +235,18 @@
 		max-width: 80%;
 		margin: 40px 0 20px 0;
 	}
+	.booth-mood-image {
+		height: auto;
+		max-height:unset;
+		max-width: 100%;
+		border-radius: 20px;
+	}
 
 	h4 {
 		color:#F95300;
 	}
 
-
+	
 
 	.exomap-content-description {
 		color: #1582BE;

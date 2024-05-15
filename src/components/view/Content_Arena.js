@@ -62,7 +62,7 @@ export default function ArenaContent({ contentData }) {
                     { contentData.acf.arena.webseite &&
                         <>
                             <div className='exomap-content-trenner'>
-                                <p>Webseite</p>
+                                <p></p>
                             </div>
                             <a href={contentData.acf.arena.webseite} target="_blank">
                                 <button>Website</button>

@@ -6,15 +6,15 @@ export default function InfoContent({ contentData }) {
     
      useEffect(() => {
         setLoading(true);
-
-        console.log(contentData)
+ 
         async function fetchImage() {
-            if (contentData.acf && contentData.acf.exhibitor && contentData.acf.info.logo) {
+            if (contentData.acf && contentData.acf.info && contentData.acf.info.image) {
                 try {
-                        const imageID = contentData.acf.exhibitor.logo;
+                        const imageID = contentData.acf.info.image;
                         const REST_URL = `${window.location.origin}/wp-json/wp/v2/`;
                         const response = await fetch(`${REST_URL}media/${imageID}`);
                         const data = await response.json();
+                        console.log(data.source_url);
                         setImageURL(data.source_url); 
                 } catch (error) {
                         console.error('Error fetching image:', error);
@@ -39,7 +39,7 @@ export default function InfoContent({ contentData }) {
             ) : (
                 // Actual content
                 <>
-                    {imageURL && <img src={imageURL} alt="Exhibitor Logo" />}
+                    {imageURL && <img src={imageURL} class="booth-mood-image" alt="Exhibitor Logo" />}
                     <h4 dangerouslySetInnerHTML={{ __html: contentData.title.rendered }}></h4>
                     <div className="exomap-content-description" dangerouslySetInnerHTML={{ __html: contentData.acf.info.description }} />
                 </>

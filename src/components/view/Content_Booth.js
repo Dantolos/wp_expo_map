@@ -6,6 +6,7 @@ export default function BoothContent({ contentData }) {
      const [loading, setLoading] = useState(false);
     
      useEffect(() => {
+        
         setLoading(true);
         async function fetchImage() {
             if (contentData.acf && contentData.acf.exhibitor && contentData.acf.exhibitor.logo) {
@@ -60,7 +61,7 @@ export default function BoothContent({ contentData }) {
                     { contentData.acf.exhibitor.webseite &&
                         <>
                             <div className='exomap-content-trenner'>
-                                <p>Webseite</p>
+                                <p></p>
                             </div>
                             <a href={contentData.acf.exhibitor.webseite} target="_blank">
                                 <button>Website</button>

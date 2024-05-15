@@ -178,7 +178,7 @@ function ArenaContent({
     size: "35px"
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h6", null, contentData.acf.arena.kontaktperson)))), contentData.acf.arena.webseite && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "exomap-content-trenner"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Webseite")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
     href: contentData.acf.arena.webseite,
     target: "_blank"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", null, "Website")))));
@@ -265,7 +265,7 @@ function BoothContent({
     size: "35px"
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h6", null, contentData.acf.exhibitor.kontaktperson)))), contentData.acf.exhibitor.webseite && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "exomap-content-trenner"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Webseite")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
     href: contentData.acf.exhibitor.webseite,
     target: "_blank"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", null, "Website")))));
@@ -294,14 +294,14 @@ function InfoContent({
   const [loading, setLoading] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     setLoading(true);
-    console.log(contentData);
     async function fetchImage() {
-      if (contentData.acf && contentData.acf.exhibitor && contentData.acf.info.logo) {
+      if (contentData.acf && contentData.acf.info && contentData.acf.info.image) {
         try {
-          const imageID = contentData.acf.exhibitor.logo;
+          const imageID = contentData.acf.info.image;
           const REST_URL = `${window.location.origin}/wp-json/wp/v2/`;
           const response = await fetch(`${REST_URL}media/${imageID}`);
           const data = await response.json();
+          console.log(data.source_url);
           setImageURL(data.source_url);
         } catch (error) {
           console.error('Error fetching image:', error);
@@ -325,6 +325,7 @@ function InfoContent({
   // Actual content
   (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, imageURL && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
     src: imageURL,
+    class: "booth-mood-image",
     alt: "Exhibitor Logo"
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", {
     dangerouslySetInnerHTML: {
@@ -753,9 +754,19 @@ class MAP_SVG {
       // Element hover effect
       element.addEventListener('mouseenter', () => {
         element.classList.add('hover-element');
+        if (element.children) {
+          for (const childElement of element.children) {
+            childElement.classList.add('hover-element');
+          }
+        }
       });
       element.addEventListener('mouseleave', () => {
         element.classList.remove('hover-element');
+        if (element.children) {
+          for (const childElement of element.children) {
+            childElement.classList.remove('hover-element');
+          }
+        }
       });
     });
   }
