@@ -1,15 +1,15 @@
-<?php 
- 
+<?php
+
 
 function ItemList($items) {
-     $itemList = ''; 
+     $itemList = '';
      $itemList .= '<div class="expomap-itemlist hidden-itemlist">';
 
      $lastItem = '';
-     foreach($items as $item ) {  
+     foreach($items as $item ) {
           $itemID = $item['id'];
           //var_dump($item);
-		$selectedContentID = isset( $item['selectedContent'] ) ? $item['selectedContent'] : null;
+          $selectedContentID = isset( $item['selectedContent'] ) ? $item['selectedContent'] : null;
           $itemTitle = 'Titel Platzhalter';
 
           if($lastItem != $item["type"] ){
@@ -19,16 +19,16 @@ function ItemList($items) {
                $itemList .= '<div class="expomap-list-type-separator"><span>'.$typetitle.'</span></div>';
           }
 
-          if( $selectedContentID ){ 
+          if( $selectedContentID ){
                //var_dump( get_field( 'exhibitor', $selectedContentID  ) );
                $itemTitle = get_the_title( $selectedContentID ) ?: 'Titel Platzhalter';
           }
           if( $selectedContentID ){
                $itemList .= '<div class="expomap-list-item" data-boothid="'.$item['id'].'" data-content="'.$selectedContentID.'">';
-                    $itemList .= '<p>';     
-                         $itemList .= '<span class="expomap-item-nr">'.$item['nr'].'</span>';
-                         $itemList .= $itemTitle;
-                    $itemList .= '</p>';
+					$itemList .= '<div class="expomap-item-nr">'.$item['nr'].'</div>';
+				     $itemList .= '<div class="expomap-item-title">';
+                        $itemList .= '<p>' .$itemTitle.'</p>';
+                    $itemList .= '</div>';
                $itemList .= '</div>';
           }
 	}

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { IoPersonCircle } from "react-icons/io5";
+import { IoLogoLinkedin, IoGlobeOutline, IoMail, IoLogoTwitter } from "react-icons/io5";
 
 export default function BoothContent({ contentData }) {
      const [imageURL, setImageURL] = useState(null);
      const [loading, setLoading] = useState(false);
-    
+
      useEffect(() => {
-        
+
         setLoading(true);
         async function fetchImage() {
             if (contentData.acf && contentData.acf.exhibitor && contentData.acf.exhibitor.logo) {
@@ -31,11 +31,11 @@ export default function BoothContent({ contentData }) {
         <div className='expomap-content-booth'>
             {loading ? (
                 // Skeleton content while loading
-                <> 
+                <>
                     <div className="skeleton skeleton-image"></div>
                     <div className="skeleton skeleton-title"></div>
                     <div className="skeleton skeleton-description"></div>
-                    <div className="skeleton skeleton-button"></div> 
+                    <div className="skeleton skeleton-button"></div>
                 </>
             ) : (
                 // Actual content
@@ -44,16 +44,38 @@ export default function BoothContent({ contentData }) {
                     <h4 dangerouslySetInnerHTML={{ __html: contentData.title.rendered }}></h4>
                     <div className="exomap-content-description" dangerouslySetInnerHTML={{ __html: contentData.acf.exhibitor.beschreibungstext }} />
 
-                    { contentData.acf.exhibitor.kontaktperson_verlinkung &&
+                    {  contentData.acf.exhibitor.kontaktperson?.kontaktperson &&
                         <>
                             <div className='exomap-content-trenner'>
                                 <p>Contact Person</p>
                             </div>
                             <div className='expomap-content-contact'>
-                                <a href={contentData.acf.exhibitor.kontaktperson_verlinkung} target="_blank">
-                                    <IoPersonCircle color="#1582BE" size="35px" />
-                                    <h6>{contentData.acf.exhibitor.kontaktperson}</h6>
-                                </a>
+
+	                            <h6>{contentData.acf.exhibitor.kontaktperson.kontaktperson}</h6>
+															<div className='expomap-content-contact-connectors'>
+																{contentData.acf.exhibitor.kontaktperson.kontaktperson_verlinkung &&
+	                                <a   href={contentData.acf.exhibitor.kontaktperson.kontaktperson_verlinkung} target="_blank" rel="noopener noreferrer">
+	                                	<IoGlobeOutline color="#1582BE" size="25px" />
+	                                </a>
+																}
+																{contentData.acf.exhibitor.kontaktperson.email &&
+	                                <a  href={`mailto:${contentData.acf.exhibitor.kontaktperson.email}`}
+																	    target="_blank"
+																	    rel="noopener noreferrer">
+	                                	<IoMail color="#1582BE" size="25px" />
+	                                </a>
+																}
+																{contentData.acf.exhibitor.kontaktperson.linkedin &&
+	                                <a   href={contentData.acf.exhibitor.kontaktperson.linkedin} target="_blank" rel="noopener noreferrer">
+	                                	<IoLogoLinkedin color="#1582BE" size="25px" />
+	                                </a>
+																}
+																{contentData.acf.exhibitor.kontaktperson.twitter &&
+	                                <a   href={contentData.acf.exhibitor.kontaktperson.twitter} target="_blank" rel="noopener noreferrer">
+	                                	<IoLogoTwitter color="#1582BE" size="25px" />
+	                                </a>
+																}
+															</div>
                             </div>
                         </>
                     }
@@ -63,8 +85,8 @@ export default function BoothContent({ contentData }) {
                             <div className='exomap-content-trenner'>
                                 <p></p>
                             </div>
-                            <a href={contentData.acf.exhibitor.webseite} target="_blank">
-                                <button>Website</button>
+                            <a href={contentData.acf.exhibitor.webseite} target="_blank" rel="noopener noreferrer">
+                                <button className='expomap-content-button'><IoGlobeOutline color="white" size="25px" />Website</button>
                             </a>
                         </>
                     }

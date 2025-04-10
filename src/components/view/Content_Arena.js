@@ -4,7 +4,7 @@ import { IoPersonCircle } from "react-icons/io5";
 export default function ArenaContent({ contentData }) {
      const [imageURL, setImageURL] = useState(null);
      const [loading, setLoading] = useState(true);
-    
+
      useEffect(() => {
         setLoading(true);
         async function fetchImage() {
@@ -31,11 +31,11 @@ export default function ArenaContent({ contentData }) {
         <div className='expomap-content-booth'>
             {loading ? (
                 // Skeleton content while loading
-                <> 
+                <>
                     <div className="skeleton skeleton-image"></div>
                     <div className="skeleton skeleton-title"></div>
                     <div className="skeleton skeleton-description"></div>
-                    <div className="skeleton skeleton-button"></div> 
+                    <div className="skeleton skeleton-button"></div>
                 </>
             ) : (
                 // Actual content
@@ -58,14 +58,14 @@ export default function ArenaContent({ contentData }) {
                             </div>
                         </>
                     }
-                   
+
                     { contentData.acf.arena.webseite &&
                         <>
                             <div className='exomap-content-trenner'>
                                 <p></p>
                             </div>
-                            <a href={contentData.acf.arena.webseite} target="_blank">
-                                <button>Website</button>
+                            <a href={contentData.acf.arena.webseite} target="_blank" rel="noopener noreferrer">
+                            <button className='expomap-content-button'><IoGlobeOutline color="white" size="25px" />Website</button>
                             </a>
                         </>
                     }
