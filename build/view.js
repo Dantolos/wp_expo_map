@@ -176,17 +176,41 @@ function ArenaContent({
     dangerouslySetInnerHTML: {
       __html: contentData.acf.arena.description
     }
-  }), contentData.acf.arena.kontaktperson_verlinkung && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }), contentData.acf.exhibitor.kontaktperson?.kontaktperson && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "exomap-content-trenner"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Contact Person")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "expomap-content-contact"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
-    href: contentData.acf.arena.kontaktperson_verlinkung,
-    target: "_blank"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_icons_io5__WEBPACK_IMPORTED_MODULE_1__.IoPersonCircle, {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h6", null, contentData.acf.exhibitor.kontaktperson.kontaktperson), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "expomap-content-contact-connectors"
+  }, contentData.acf.exhibitor.kontaktperson.kontaktperson_verlinkung && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+    href: contentData.acf.exhibitor.kontaktperson.kontaktperson_verlinkung,
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_icons_io5__WEBPACK_IMPORTED_MODULE_1__.IoGlobeOutline, {
     color: "#1582BE",
-    size: "35px"
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h6", null, contentData.acf.arena.kontaktperson)))), contentData.acf.arena.webseite && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    size: "25px"
+  })), contentData.acf.exhibitor.kontaktperson.email && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+    href: `mailto:${contentData.acf.exhibitor.kontaktperson.email}`,
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(IoMail, {
+    color: "#1582BE",
+    size: "25px"
+  })), contentData.acf.exhibitor.kontaktperson.linkedin && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+    href: contentData.acf.exhibitor.kontaktperson.linkedin,
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(IoLogoLinkedin, {
+    color: "#1582BE",
+    size: "25px"
+  })), contentData.acf.exhibitor.kontaktperson.twitter && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+    href: contentData.acf.exhibitor.kontaktperson.twitter,
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(IoLogoTwitter, {
+    color: "#1582BE",
+    size: "25px"
+  }))))), contentData.acf.arena.webseite && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "exomap-content-trenner"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
     href: contentData.acf.arena.webseite,
@@ -194,7 +218,7 @@ function ArenaContent({
     rel: "noopener noreferrer"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     className: "expomap-content-button"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(IoGlobeOutline, {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_icons_io5__WEBPACK_IMPORTED_MODULE_1__.IoGlobeOutline, {
     color: "white",
     size: "25px"
   }), "Website")))));

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { IoPersonCircle } from "react-icons/io5";
+import { IoGlobeOutline } from "react-icons/io5";
 
 export default function ArenaContent({ contentData }) {
      const [imageURL, setImageURL] = useState(null);
@@ -44,17 +44,38 @@ export default function ArenaContent({ contentData }) {
                     <h4 dangerouslySetInnerHTML={{ __html: contentData.title.rendered }}></h4>
                     <div className="exomap-content-description" dangerouslySetInnerHTML={{ __html: contentData.acf.arena.description }} />
 
-                    { contentData.acf.arena.kontaktperson_verlinkung &&
+                    {  contentData.acf.exhibitor.kontaktperson?.kontaktperson &&
                         <>
                             <div className='exomap-content-trenner'>
                                 <p>Contact Person</p>
                             </div>
-
                             <div className='expomap-content-contact'>
-                                <a href={contentData.acf.arena.kontaktperson_verlinkung} target="_blank">
-                                    <IoPersonCircle color="#1582BE" size="35px" />
-                                    <h6>{contentData.acf.arena.kontaktperson}</h6>
-                                </a>
+
+	                            <h6>{contentData.acf.exhibitor.kontaktperson.kontaktperson}</h6>
+															<div className='expomap-content-contact-connectors'>
+																{contentData.acf.exhibitor.kontaktperson.kontaktperson_verlinkung &&
+	                                <a   href={contentData.acf.exhibitor.kontaktperson.kontaktperson_verlinkung} target="_blank" rel="noopener noreferrer">
+	                                	<IoGlobeOutline color="#1582BE" size="25px" />
+	                                </a>
+																}
+																{contentData.acf.exhibitor.kontaktperson.email &&
+	                                <a  href={`mailto:${contentData.acf.exhibitor.kontaktperson.email}`}
+																	    target="_blank"
+																	    rel="noopener noreferrer">
+	                                	<IoMail color="#1582BE" size="25px" />
+	                                </a>
+																}
+																{contentData.acf.exhibitor.kontaktperson.linkedin &&
+	                                <a   href={contentData.acf.exhibitor.kontaktperson.linkedin} target="_blank" rel="noopener noreferrer">
+	                                	<IoLogoLinkedin color="#1582BE" size="25px" />
+	                                </a>
+																}
+																{contentData.acf.exhibitor.kontaktperson.twitter &&
+	                                <a   href={contentData.acf.exhibitor.kontaktperson.twitter} target="_blank" rel="noopener noreferrer">
+	                                	<IoLogoTwitter color="#1582BE" size="25px" />
+	                                </a>
+																}
+															</div>
                             </div>
                         </>
                     }
@@ -65,7 +86,7 @@ export default function ArenaContent({ contentData }) {
                                 <p></p>
                             </div>
                             <a href={contentData.acf.arena.webseite} target="_blank" rel="noopener noreferrer">
-                            <button className='expomap-content-button'><IoGlobeOutline color="white" size="25px" />Website</button>
+                                <button className='expomap-content-button'><IoGlobeOutline color="white" size="25px" />Website</button>
                             </a>
                         </>
                     }
