@@ -375,3 +375,41 @@
 @media screen and (min-width: 30em) and (orientation: landscape) {
 	/* … */
 }
+
+
+/* suchfeld */
+.expomap-search-wrapper {
+    padding: 10px 0 15px 0;
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 10;
+}
+
+.expomap-search-input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #1582BE;
+    border-radius: 20px;
+    font-size: 14px;
+    outline: none;
+    box-sizing: border-box;
+    transition: box-shadow 200ms ease;
+
+    &:focus {
+        box-shadow: 0 0 0 2px rgba(21, 130, 190, 0.3);
+    }
+
+    &::placeholder {
+        color: #aaa;
+    }
+}
+
+
+.active-element,
+.active-element * {
+    stroke: #F95300 !important;
+    fill: #F95300 !important;
+    fill-opacity: 0.4;
+    cursor: pointer;
+}

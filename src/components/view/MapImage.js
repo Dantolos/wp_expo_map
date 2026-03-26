@@ -1,68 +1,60 @@
-import React, { useState, useEffect, useRef, Component } from 'react';
-import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+import React, { useState, useEffect, useRef } from 'react';
+import { TransformWrapper, TransformComponent, useControls } from 'react-zoom-pan-pinch';
 
-
+// Inner component has access to useControls() hook from TransformWrapper context
+function MapImageInner( { svgContent } ) {
+	const controls = useControls();
+	return (
+		<TransformComponent>
+			<div
+				className='expo-plan-image-container'
+				width="100%"
+				height="100%"
+				dangerouslySetInnerHTML={{ __html: svgContent }}
+			/>
+		</TransformComponent>
+	);
+}
 
 export default function MapImage( { loadHandler } ) {
-    const [svgContent, setSvgContent] = useState(null);
-    const svgRef = useRef(); 
+	const [svgContent, setSvgContent] = useState( null );
+	const transformRef = useRef( null );
 
-    const [width, setWidth]   = useState(window.innerWidth);
-    const [height, setHeight] = useState(window.innerHeight);
-    const [initialScale, setInitialScale] = useState(1);
+	const ImageURL = document.getElementById( 'expo-react-container' ).dataset.map;
 
-    const updateDimensions = () => {
-        setWidth(window.innerWidth);
-        setHeight(window.innerHeight);
-        if( width < 1000 ) {
-          setInitialScale(2)
-        }
-    }
-    useEffect(() => {
-        window.addEventListener("resize", updateDimensions);
-        return () => window.removeEventListener("resize", updateDimensions);
-    }, []);
+	useEffect( () => {
+		const fetchSvg = async () => {
+			try {
+				const response = await fetch( ImageURL );
+				if ( !response.ok ) throw new Error( 'Failed to fetch SVG' );
+				const svgText = await response.text();
+				setSvgContent( svgText );
+			} catch ( error ) {
+				console.error( 'Error fetching SVG:', error );
+			}
+		};
+		fetchSvg();
+	}, [ImageURL] );
 
+	// Once SVG is loaded, expose the TransformWrapper controls to the parent
+	useEffect( () => {
+		if ( svgContent && transformRef.current ) {
+			loadHandler( transformRef.current );
+		}
+	}, [svgContent] );
 
-    let ImageURL = document.getElementById('expo-react-container').dataset.map
+	if ( !svgContent ) return null;
 
-    useEffect(() => {
-      const fetchSvg = async () => {
-        try {
-          const response = await fetch(ImageURL);
-          if (!response.ok) {
-            throw new Error('Failed to fetch SVG');
-          }
-          const svgText = await response.text();
-          setSvgContent(svgText);
-          loadHandler()
-        } catch (error) {
-          console.error('Error fetching SVG:', error);
-        }
-      };
-      fetchSvg(); 
-    }, [ImageURL]);
-
-
-    return (
-      <> 
-       <TransformWrapper 
-        style={{width:'100vw',height:'100vh'}}
-        initialScale={initialScale}
-        initialPositionX={0}
-        initialPositionY={0} 
-        limitToBounds={false}
-        >
-        <TransformComponent> 
-          <div 
-            ref={svgRef} 
-            className='expo-plan-image-container'  
-            width="100%" height="100%" 
-            dangerouslySetInnerHTML={{ __html: svgContent }} 
-          >
-          </div>
-        </TransformComponent>
-      </TransformWrapper>
-      </> 
-    );
+	return (
+		<TransformWrapper
+			ref={ transformRef }
+			style={{ width: '100vw', height: '100vh' }}
+			initialScale={ 1 }
+			initialPositionX={ 0 }
+			initialPositionY={ 0 }
+			limitToBounds={ false }
+		>
+			<MapImageInner svgContent={ svgContent } />
+		</TransformWrapper>
+	);
 }

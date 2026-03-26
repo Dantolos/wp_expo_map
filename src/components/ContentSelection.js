@@ -1,40 +1,42 @@
 import { useState, useEffect } from 'react';
-
-import {
-     ComboboxControl
-} from '@wordpress/components';
+import { ComboboxControl } from '@wordpress/components';
 
 export default function ContentSelection( { thisId, postList, setSelectetContent, selectedContent } ) {
-     const [currentContent, setCurrentContent] = useState('please selcet'); 
+	const [currentContent, setCurrentContent] = useState( null );
+	const [filteredOptions, setFilteredOptions] = useState( [] );
 
-     const handleContentSelect = (selectedValue) => { 
-          setSelectetContent(thisId, selectedValue);
-          setCurrentContent(selectedValue);
-          
-     };
+	// Sync filteredOptions when postList loads
+	useEffect( () => {
+		setFilteredOptions( postList );
+	}, [postList] );
 
-     useEffect( () => {
-          if(selectedContent){
-               setCurrentContent(selectedContent);
-          } 
-     } )
+	// Sync currentContent when selectedContent prop changes
+	useEffect( () => {
+    if ( selectedContent ) {
+        setCurrentContent( selectedContent );
+    }
+	}, [selectedContent] )
 
-     return (
-          <div className="em-content-selection-wrapper">
-               <p>contentselection</p>
-               <ComboboxControl
-                    label="select content"
-                    value={ currentContent }
-                    onChange={  handleContentSelect }
-                    options={postList}
-                    onInputChange={(inputValue) =>
-                         setFilteredOptions(postList.filter(option =>
-                                   option.label.toLowerCase().startsWith(inputValue.toLowerCase())
-                              )
-                         )
-                    }
-               />
-               
-          </div>
-     )
+	const handleContentSelect = ( selectedValue ) => {
+		setSelectetContent( thisId, selectedValue );
+		setCurrentContent( selectedValue );
+	};
+
+	return (
+		<div className="em-content-selection-wrapper">
+			<ComboboxControl
+				label=" "
+				value={ currentContent }
+				onChange={ handleContentSelect }
+				options={ filteredOptions }
+				onInputChange={ ( inputValue ) =>
+					setFilteredOptions(
+						postList.filter( option =>
+							option.label.toLowerCase().startsWith( inputValue.toLowerCase() )
+						)
+					)
+				}
+			/>
+		</div>
+	);
 }

@@ -1,97 +1,85 @@
 import React, { useState, useEffect } from 'react';
-import { IoLogoLinkedin, IoGlobeOutline, IoMail, IoLogoTwitter } from "react-icons/io5";
+import { IoLogoLinkedin, IoGlobeOutline, IoMail, IoLogoTwitter } from 'react-icons/io5';
 
-export default function BoothContent({ contentData }) {
-     const [imageURL, setImageURL] = useState(null);
-     const [loading, setLoading] = useState(false);
+export default function BoothContent( { contentData } ) {
+	const [loading, setLoading] = useState( true );
 
-     useEffect(() => {
+	// ACF returns logo as a URL directly (return_format: 'url' in field config)
+	// No secondary media fetch needed — removes one API call per booth click
+	const logoURL = contentData?.acf?.exhibitor?.logo ?? null;
 
-        setLoading(true);
-        async function fetchImage() {
-            if (contentData.acf && contentData.acf.exhibitor && contentData.acf.exhibitor.logo) {
-                try {
-                        const imageID = contentData.acf.exhibitor.logo;
-                        const REST_URL = `${window.location.origin}/wp-json/wp/v2/`;
-                        const response = await fetch(`${REST_URL}media/${imageID}`);
-                        const data = await response.json();
-                        setImageURL(data.source_url);
-                } catch (error) {
-                        console.error('Error fetching image:', error);
-                } finally {
-                        setLoading(false); // Set loading to false regardless of success or failure
-                }
-            }
-            setLoading(false);
-        }
-        fetchImage();
-    }, [contentData]);
+	useEffect( () => {
+		setLoading( false );
+	}, [contentData] );
 
-    return (
-        <div className='expomap-content-booth'>
-            {loading ? (
-                // Skeleton content while loading
-                <>
-                    <div className="skeleton skeleton-image"></div>
-                    <div className="skeleton skeleton-title"></div>
-                    <div className="skeleton skeleton-description"></div>
-                    <div className="skeleton skeleton-button"></div>
-                </>
-            ) : (
-                // Actual content
-                <>
-                    {imageURL && <img src={imageURL} alt="Exhibitor Logo" />}
-                    <h4 dangerouslySetInnerHTML={{ __html: contentData.title.rendered }}></h4>
-                    <div className="exomap-content-description" dangerouslySetInnerHTML={{ __html: contentData.acf.exhibitor.beschreibungstext }} />
+	const exhibitor = contentData?.acf?.exhibitor ?? {};
+	const contact   = exhibitor?.kontaktperson ?? {};
 
-                    {  contentData.acf.exhibitor.kontaktperson?.kontaktperson &&
-                        <>
-                            <div className='exomap-content-trenner'>
-                                <p>Contact Person</p>
-                            </div>
-                            <div className='expomap-content-contact'>
+	return (
+		<div className='expomap-content-booth'>
+			{ loading ? (
+				<>
+					<div className="skeleton skeleton-image"></div>
+					<div className="skeleton skeleton-title"></div>
+					<div className="skeleton skeleton-description"></div>
+					<div className="skeleton skeleton-button"></div>
+				</>
+			) : (
+				<>
+					{ logoURL && <img src={ logoURL } alt="Exhibitor Logo" /> }
 
-	                            <h6>{contentData.acf.exhibitor.kontaktperson.kontaktperson}</h6>
-															<div className='expomap-content-contact-connectors'>
-																{contentData.acf.exhibitor.kontaktperson.kontaktperson_verlinkung &&
-	                                <a   href={contentData.acf.exhibitor.kontaktperson.kontaktperson_verlinkung} target="_blank" rel="noopener noreferrer">
-	                                	<IoGlobeOutline color="#1582BE" size="25px" />
-	                                </a>
-																}
-																{contentData.acf.exhibitor.kontaktperson.email &&
-	                                <a  href={`mailto:${contentData.acf.exhibitor.kontaktperson.email}`}
-																	    target="_blank"
-																	    rel="noopener noreferrer">
-	                                	<IoMail color="#1582BE" size="25px" />
-	                                </a>
-																}
-																{contentData.acf.exhibitor.kontaktperson.linkedin &&
-	                                <a   href={contentData.acf.exhibitor.kontaktperson.linkedin} target="_blank" rel="noopener noreferrer">
-	                                	<IoLogoLinkedin color="#1582BE" size="25px" />
-	                                </a>
-																}
-																{contentData.acf.exhibitor.kontaktperson.twitter &&
-	                                <a   href={contentData.acf.exhibitor.kontaktperson.twitter} target="_blank" rel="noopener noreferrer">
-	                                	<IoLogoTwitter color="#1582BE" size="25px" />
-	                                </a>
-																}
-															</div>
-                            </div>
-                        </>
-                    }
+					<h4 dangerouslySetInnerHTML={{ __html: contentData.title.rendered }} />
 
-                    { contentData.acf.exhibitor.webseite &&
-                        <>
-                            <div className='exomap-content-trenner'>
-                                <p></p>
-                            </div>
-                            <a href={contentData.acf.exhibitor.webseite} target="_blank" rel="noopener noreferrer">
-                                <button className='expomap-content-button'><IoGlobeOutline color="white" size="25px" />Website</button>
-                            </a>
-                        </>
-                    }
-                </>
-            )}
-        </div>
-    );
+					<div
+						className="exomap-content-description"
+						dangerouslySetInnerHTML={{ __html: exhibitor.beschreibungstext }}
+					/>
+
+					{ contact.kontaktperson && (
+						<>
+							<div className='exomap-content-trenner'>
+								<p>Contact Person</p>
+							</div>
+							<div className='expomap-content-contact'>
+								<h6>{ contact.kontaktperson }</h6>
+								<div className='expomap-content-contact-connectors'>
+									{ contact.kontaktperson_verlinkung && (
+										<a href={ contact.kontaktperson_verlinkung } target="_blank" rel="noopener noreferrer">
+											<IoGlobeOutline color="#1582BE" size="25px" />
+										</a>
+									) }
+									{ contact.email && (
+										<a href={ `mailto:${contact.email}` } target="_blank" rel="noopener noreferrer">
+											<IoMail color="#1582BE" size="25px" />
+										</a>
+									) }
+									{ contact.linkedin && (
+										<a href={ contact.linkedin } target="_blank" rel="noopener noreferrer">
+											<IoLogoLinkedin color="#1582BE" size="25px" />
+										</a>
+									) }
+									{ contact.twitter && (
+										<a href={ contact.twitter } target="_blank" rel="noopener noreferrer">
+											<IoLogoTwitter color="#1582BE" size="25px" />
+										</a>
+									) }
+								</div>
+							</div>
+						</>
+					) }
+
+					{ exhibitor.webseite && (
+						<>
+							<div className='exomap-content-trenner'><p></p></div>
+							<a href={ exhibitor.webseite } target="_blank" rel="noopener noreferrer">
+								<button className='expomap-content-button'>
+									<IoGlobeOutline color="white" size="25px" />Website
+								</button>
+							</a>
+						</>
+					) }
+				</>
+			) }
+		</div>
+	);
 }
