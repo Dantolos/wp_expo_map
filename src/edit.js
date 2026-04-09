@@ -128,9 +128,14 @@ export default function Edit( {attributes, setAttributes } ) {
 			);
 
 			setExpoList(elementList)
-			if(boothes.length < 1){
-				setAttributes({ boothes: elementList })
-			}
+			const mergedBoothes = elementList.map(item => {
+							const existing = boothes.find(b => b.id === item.id);
+							if (existing) {
+								return { ...existing, nr: item.nr, type: item.type, type_id: item.type_id };
+							}
+							return item;
+						});
+						setAttributes({ boothes: mergedBoothes });
 		}
 
 		let elementItem = document.querySelectorAll('.element-item')

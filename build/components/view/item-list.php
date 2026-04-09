@@ -30,7 +30,7 @@ function ItemList($items) {
                 'Zone'    => 'Zone',
                 'Info'    => 'Info',
                 'Arena'   => 'Arena',
-                's' => 'Session',
+                'Sessions' => 'Session Rooms',
             ];
             $typetitle = $typeLabels[$item["type"]] ?? $item["type"];
             $itemList .= '<div class="expomap-list-type-separator" data-separator="'.$typetitle.'"><span>'.$typetitle.'</span></div>';
@@ -39,7 +39,7 @@ function ItemList($items) {
         if( $selectedContentID ) {
             $itemTitle = get_the_title( $selectedContentID ) ?: 'Titel Platzhalter';
             $itemList .= '<div class="expomap-list-item" data-boothid="'.$item['id'].'" data-content="'.$selectedContentID.'" data-title="'.esc_attr(strtolower($itemTitle)).'">';
-                $itemList .= '<div class="expomap-item-nr">'.$item['nr'].'</div>';
+            	$itemList .= '<div class="expomap-item-nr">'.preg_replace('/\D/', '', $item['nr']).'</div>';
                 $itemList .= '<div class="expomap-item-title">';
                     $itemList .= '<p>'.$itemTitle.'</p>';
                 $itemList .= '</div>';

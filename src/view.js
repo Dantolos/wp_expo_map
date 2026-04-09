@@ -48,6 +48,7 @@ function App() {
 	    } );
 	}, [mapImageLoaded] );
 
+
 	return (
 		<>
 			<MapImage loadHandler={ loadHandler } />

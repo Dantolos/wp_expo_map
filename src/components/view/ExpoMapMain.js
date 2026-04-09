@@ -22,6 +22,7 @@ export default function ExpoMapMain( { zoomControlsRef } ) {
 		const listItem = document.querySelector(
 			`.expomap-list-item[data-boothid="${currentHover}"]`
 		);
+
 		const boothID = listItem?.dataset.content;
 		if ( !boothID ) {
 			setLoading( false );
@@ -41,7 +42,9 @@ export default function ExpoMapMain( { zoomControlsRef } ) {
 			}
 		};
 		fetchTitle();
-	}, [currentHover] );
+	}, [currentHover]);
+
+
 
 	return (
 		<>

@@ -3,7 +3,7 @@
  * Plugin Name:       WP Expo Plan
  * Description:       Interactive map to show expo plans
  * Plugin URI:        https://github.com/Dantolos/wp_expo_map
- * Version:           1.1.11
+ * Version:           1.1.12
  * Author:            Aaron Giaimo
  * Author URI:        https://github.com/Dantolos
  * Text Domain:       expo-plan
