@@ -26,7 +26,7 @@ function ItemList($items) {
         if( $lastItem != $item["type"] ) {
             $lastItem = $item["type"];
             $typeLabels = [
-                'Booth'   => 'Aussteller',
+                'Booth'   => 'Booth',
                 'Zone'    => 'Zone',
                 'Info'    => 'Info',
                 'Arena'   => 'Arena',

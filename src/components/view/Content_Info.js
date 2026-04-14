@@ -16,7 +16,7 @@ export default function InfoContent({ contentData }) {
                 <>
                     <div className='exomap-content-trenner'><p></p></div>
                     <a href={ info.webseite } target="_blank" rel="noopener noreferrer">
-                        <button className='expomap-content-button'>Website</button>
+                        <button className='expomap-content-button'>more</button>
                     </a>
                 </>
             ) }
