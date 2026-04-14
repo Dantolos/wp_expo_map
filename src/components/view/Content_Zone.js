@@ -1,52 +1,25 @@
-import React, { useState, useEffect } from 'react'; 
+import React from 'react';
 
 export default function ZoneContent({ contentData }) {
-     const [imageURL, setImageURL] = useState(null);
-     const [loading, setLoading] = useState(true);
-    
-     useEffect(() => {
-        setLoading(true);
-
-        console.log(contentData)
-        async function fetchImage() {
-            if (contentData.acf && contentData.acf.zone && contentData.acf.zone.logo) {
-                try {
-                        const imageID = contentData.acf.zone.logo;
-                        const REST_URL = `${window.location.origin}/wp-json/wp/v2/`;
-                        const response = await fetch(`${REST_URL}media/${imageID}`);
-                        const data = await response.json();
-                        setImageURL(data.source_url); 
-                } catch (error) {
-                        console.error('Error fetching image:', error);
-                } finally {
-                        setLoading(false); // Set loading to false regardless of success or failure
-                }
-            }
-            setLoading(false);
-        }
-
-        fetchImage();
-    }, [contentData]);
+    const imageURL = contentData?.acf?.zone?.logo ?? null;
+    const zone = contentData?.acf?.zone ?? {};
 
     return (
         <div className='expomap-content-booth'>
-            {loading ? (
-                // Skeleton content while loading
-                <> 
-                    <div className="skeleton skeleton-image"></div>
-                    <div className="skeleton skeleton-title"></div>
-                    <div className="skeleton skeleton-description"></div>
-                </>
-            ) : (
-                // Actual content
+            { imageURL && <img src={ imageURL } alt="Zone Logo" /> }
+            <h4 dangerouslySetInnerHTML={{ __html: contentData.title.rendered }} />
+            <div
+                className="exomap-content-description"
+                dangerouslySetInnerHTML={{ __html: zone.description }}
+            />
+            { zone.webseite && (
                 <>
-                    {imageURL && <img src={imageURL} alt="Exhibitor Logo" />}
-                    <h4 dangerouslySetInnerHTML={{ __html: contentData.title.rendered }}></h4>
-                    <div className="exomap-content-description" dangerouslySetInnerHTML={{ __html: contentData.acf.zone.description }} />
-
-                 
+                    <div className='exomap-content-trenner'><p></p></div>
+                    <a href={ zone.webseite } target="_blank" rel="noopener noreferrer">
+                        <button className='expomap-content-button'>Website</button>
+                    </a>
                 </>
-            )}
+            ) }
         </div>
     );
 }

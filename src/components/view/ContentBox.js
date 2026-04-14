@@ -143,7 +143,9 @@ export default function ContentBox( { zoomControlsRef } ) {
 		}
 
 		init();
-	}, [] );
+	}, []);
+
+	console.log('dasf')
 
 	return (
 		<div className="expomap-content">
@@ -152,8 +154,8 @@ export default function ContentBox( { zoomControlsRef } ) {
 					{ content.acf?.booth_type === 'b' && <BoothContent contentData={content} /> }
 					{ content.acf?.booth_type === 'a' && <ArenaContent contentData={content} /> }
 					{ content.acf?.booth_type === 'i' && <InfoContent contentData={content} /> }
-					{content.acf?.booth_type === 'z' && <ZoneContent contentData={content} />}
-					{ content.acf?.booth_type === 's' && <ZoneContent contentData={content} /> }
+					{ content.acf?.booth_type === 'z' && <ZoneContent contentData={content} />}
+					{ content.acf?.booth_type === 's' && <InfoContent contentData={content} /> }
 				</>
 			) }
 		</div>
