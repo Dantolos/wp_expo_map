@@ -49,7 +49,8 @@ export default function MapImage( { loadHandler } ) {
 		<TransformWrapper
 			ref={ transformRef }
 			style={{ width: '100vw', height: '100vh' }}
-			initialScale={ 1 }
+			initialScale={1}
+			minScale={.5}
 			initialPositionX={ 0 }
 			initialPositionY={ 0 }
 			limitToBounds={ false }
